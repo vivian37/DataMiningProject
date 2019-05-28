@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+{% block content %}
+    <div class="row pb-3">
+        <div class="col-4"></div>
+        <div class="col-2">
+            <div class="center"><input type="text" id="stockIdInput"></div>
+        </div>
+        <div class="col-1">
+            <button class="btn btn-info" id="showBtn">Show</button>
+        </div>
+    </div>
+
+    <div class="row h-100">
+
+        <div id="ec-container" class="col-12" style="height:80%;"></div>
+
+    </div>
+
+{% endblock %}
+{% block scripts %}
+
+    <script type="text/javascript" src="/static/js/echarts.min.js"></script>
+    <script type="text/javascript" src="/static/js/echarts-gl.min.js"></script>
+    <script type="text/javascript" src="/static/js/ecStat.min.js"></script>
+    <script type="text/javascript"
+            src="/static/js/dataTool.min.js"></script>
+
+    <script src="/static/visualization.js"></script>
+{% endblock %}

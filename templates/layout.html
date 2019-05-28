@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Collapsible sidebar using Bootstrap 4</title>
+
+    <!-- Bootstrap CSS CDN -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
+          integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    <!-- Our Custom CSS -->
+    <link rel="stylesheet" href="/static/main.css">
+
+    <!-- Font Awesome JS -->
+    <script defer src="/static/js/solid.js"
+            integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ"
+            crossorigin="anonymous"></script>
+    <script defer src="/static/js/fontawesome.js"
+            integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY"
+            crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+
+<div class="wrapper">
+    <!-- Sidebar Holder -->
+    <nav id="sidebar">
+        <div class="sidebar-header">
+            <h3>Plouto Trading System</h3>
+        </div>
+
+        <ul class="list-unstyled components">
+            <li>
+                <a href="/">Dashboard</a>
+            </li>
+            <li>
+                <a href="upload">Upload Data</a>
+            </li>
+            <li class="active">
+                <a href="#analysisSubmenu" data-toggle="collapse" aria-expanded="false"
+                   class="dropdown-toggle">Analysis</a>
+                <ul class="collapse list-unstyled" id="analysisSubmenu">
+                    <li>
+                        <a href="visualization">Stock Visualization</a>
+                    </li>
+                    <li>
+                        <a href="moving_average">Moving Average</a>
+                    </li>
+                    <li>
+                        <a href="similar">Similar Assets</a>
+                    </li>
+                    <li>
+                        <a href="clustering">Clustering</a>
+                    </li>
+                    <li>
+                        <a href="freqitem">Frequent Itemsets</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="#strategySubmenu" data-toggle="collapse" aria-expanded="false"
+                   class="dropdown-toggle">Strategy</a>
+                <ul class="collapse list-unstyled" id="strategySubmenu">
+                    <li>
+                        <a href="#">Similarity Based</a>
+                    </li>
+                    <li>
+                        <a href="#">News Event Based</a>
+                    </li>
+                    <li>
+                        <a href="#">SVM Prediction</a>
+                    </li>
+                </ul>
+            </li>
+
+        </ul>
+
+
+    </nav>
+
+    <!-- Page Content Holder -->
+    <div id="content">
+
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
+
+                <button type="button" id="sidebarCollapse" class="navbar-btn">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse"
+                        data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <i class="fas fa-align-justify"></i>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Help</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Credits</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="javascript:"><i class="fas fa-search"></i>
+                            </a>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        {% block content %}{% endblock %}
+
+    </div>
+</div>
+
+<!-- Popper.JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"
+        integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"
+        crossorigin="anonymous"></script>
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#sidebarCollapse').on('click', function () {
+            $('#sidebar').toggleClass('active');
+            $(this).toggleClass('active');
+        });
+    });
+</script>
+<script type="text/javascript" src="/static/js/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="/static/js/bootstrap.bundle.min.js"></script>
+<script type="text/javascript" src="/static/js/jquery-ui.min.js"></script>
+{% block scripts %}{% endblock %}
+</body>
+
+</html>
