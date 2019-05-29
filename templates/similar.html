@@ -1,0 +1,93 @@
+{% extends "layout.html" %}
+{% block title %}Finding Similar Assets{% endblock %}
+{% block rawcss %}
+    .modal-dialog{
+    position: relative;
+    display: table; /* This is important */
+    overflow-y: auto;
+    overflow-x: auto;
+    width: auto;
+    min-width: 600px;
+    }
+{% endblock %}
+{% block content %}
+    <div class="row pb-3">
+        <div class="col-4"></div>
+        <div class="col-2">
+            <div class="center"><input type="text" id="stockIdInput"></div>
+        </div>
+        <div class="col-1">
+            <button class="btn btn-info" id="showBtn">Show</button>
+        </div>
+        <div class="col-2">
+            <div class="input-counter input-group">
+                <div class="input-group-prepend">
+                    <button type="button" class="btn-add btn btn-primary">
+                        <i class="fa fa-plus"></i>
+                    </button>
+                </div>
+                <input type="text" class="form-control counter" id="itemLimitInput" data-min="1" data-max="20"
+                       data-default="5">
+                <div class="input-group-append">
+                    <button type="button" class="btn-subtract btn btn-primary">
+                        <i class="fa fa-minus"></i>
+                    </button>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-1">
+            <p>Stock: <b id="stockIdDisp"></b></p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <table class="table table-striped" id="tbl">
+                <thead>
+                <tr>
+                    <th scope="col">#</th>
+
+                    <th scope="col">Stock ID</th>
+                    <th scope="col">Similarity</th>
+                    <th scope="col">Detail</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="modal fade" id="drawModal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="myModalLabel">Detailed Comparision</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div id="chartArea" style="width: 1200px; height: 600px;"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">关闭</button>
+
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div>
+{% endblock %}
+{% block scripts %}
+    <script type="text/javascript" src="/static/js/echarts.min.js"></script>
+    <script type="text/javascript" src="/static/js/echarts-gl.min.js"></script>
+    <script type="text/javascript" src="/static/js/ecStat.min.js"></script>
+    <script type="text/javascript"
+            src="/static/js/dataTool.min.js"></script>
+
+    <script src="/static/js/jquery.input-counter.min.js"></script>
+    <script src="/static/similar.js"></script>
+{% endblock %}

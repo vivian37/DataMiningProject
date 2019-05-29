@@ -1,8 +1,8 @@
 import os
 
-from flask import Flask, render_template, jsonify
+from flask import Flask, render_template, jsonify, request
 
-from dataset import get_stock_data_detail, get_stock_data_day
+from dataset import get_stock_data_detail, get_stock_data_day, find_most_similar
 from settings import *
 
 app = Flask(__name__)
@@ -21,6 +21,11 @@ def visualization():
 @app.route('/moving_average')
 def moving_average():
     return render_template('moving_average.html')
+
+
+@app.route('/similar')
+def similar_assets():
+    return render_template('similar.html')
 
 
 @app.route('/data/count')
@@ -44,6 +49,16 @@ def stock_data_detail(stock_id):
 @app.route('/data/stock/day/<stock_id>')
 def get_stock_data(stock_id):
     return jsonify(get_stock_data_day(stock_id))
+
+
+@app.route('/data/stock/similar/<stock_id>')
+def get_most_similar(stock_id):
+    limit = int(request.args.get('limit'))
+    if not limit: limit = 5
+    return jsonify(
+        [['SZ001979', 0.6666666666666666, 2, 3], ['SZ002602', 0.6, 9, 15], ['SZ399809', 0.5981308411214953, 64, 107],
+         ['SZ399686', 0.5975609756097561, 49, 82], ['SH110031', 0.5909090909090909, 39, 66]])
+    return jsonify(find_most_similar(stock_id, limit))
 
 
 if __name__ == '__main__':

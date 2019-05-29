@@ -1,7 +1,10 @@
 import os
 
+from proLib import proLib
 from reader import readfile_day_aggr
 from settings import *
+
+plib = proLib()
 
 
 def get_stock_data_detail(stock_id):
@@ -31,3 +34,11 @@ def get_stock_data_day(stock_id):
     data = list(readfile_day_aggr(os.path.join(DATA_DIR, '{}.csv'.format(stock_id))))
     data = [[d[0], float(d[2]), float(d[5]), float(d[4]), float(d[3])] for d in data]
     return data
+
+
+def find_most_similar(stock_id, limit):
+    return plib.get_most_similar(os.path.join(DATA_DIR, stock_id + '.csv'), limit)
+
+
+if __name__ == '__main__':
+    print(find_most_similar('SH000001', 5))

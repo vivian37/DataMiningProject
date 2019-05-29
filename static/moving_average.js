@@ -26,7 +26,7 @@ $(document).ready(function () {
                     currStockId = stock_id;
                     draw();
                 }
-            })
+            });
         } else {
             alert('Stock ' + stock_id + ' not in database!');
         }
