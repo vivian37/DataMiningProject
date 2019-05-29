@@ -28,6 +28,31 @@ def similar_assets():
     return render_template('similar.html')
 
 
+@app.route('/clustering')
+def clustering():
+    return render_template('clustering.html')
+
+
+@app.route('/freqitem')
+def freq_itemset():
+    return render_template('freqitem.html')
+
+
+@app.route('/strategy/similarity')
+def similarity_strategy():
+    return
+
+
+@app.route('/strategy/news')
+def news_strategy():
+    return
+
+
+@app.route('/strategy/prediction')
+def prediction_strategy():
+    return
+
+
 @app.route('/data/count')
 def get_data_count():
     return jsonify({'count': len(os.listdir(DATA_DIR))})

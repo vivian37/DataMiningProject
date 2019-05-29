@@ -40,5 +40,14 @@ def find_most_similar(stock_id, limit):
     return plib.get_most_similar(os.path.join(DATA_DIR, stock_id + '.csv'), limit)
 
 
-if __name__ == '__main__':
-    print(find_most_similar('SH000001', 5))
+def get_stock_data_day_pct(stock_id):
+    """
+    date, open, close +=pct
+    :param stock_id:
+    :return:
+    """
+    data = list(readfile_day_aggr(os.path.join(DATA_DIR, '{}.csv'.format(stock_id))))
+    data = [[d[0], float(d[2]), float(d[5]), (float(d[2]) - float(d[5])) / float(d[5])] for d in data]
+    return data
+
+

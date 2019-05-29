@@ -13,9 +13,9 @@
           integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
     <!-- Our Custom CSS -->
     <link rel="stylesheet" href="/static/main.css">
-<style>
-    {% block rawcss %}{% endblock %}
-</style>
+
+    {% block css %}{% endblock %}
+
     <!-- Font Awesome JS -->
     <script defer src="/static/js/solid.js"
             integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ"
@@ -68,13 +68,13 @@
                    class="dropdown-toggle">Strategy</a>
                 <ul class="collapse list-unstyled" id="strategySubmenu">
                     <li>
-                        <a href="#">Similarity Based</a>
+                        <a href="strategy/similarity">Similarity Based</a>
                     </li>
                     <li>
-                        <a href="#">News Event Based</a>
+                        <a href="strategy/news">News Event Based</a>
                     </li>
                     <li>
-                        <a href="#">SVM Prediction</a>
+                        <a href="strategy/prediction">SVM Prediction</a>
                     </li>
                 </ul>
             </li>

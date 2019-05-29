@@ -1,6 +1,18 @@
 {% extends "layout.html" %}
 {% block title %}Dashboard{% endblock %}
+{% block css %}
+    <link rel="stylesheet" href="/static/css/bootstrap-datepicker3.standalone.css">
+{% endblock %}
 {% block content %}
+    <div class="row">
+        <div class="col-7"></div>
+        <div class="col-3">
+            <p>Current Date: <b id="currDate"></b></p>
+        </div>
+        <div class="col-2">
+            <button class="btn btn-block btn-light" data-toggle="modal" data-target="#dateModal">Select Date</button>
+        </div>
+    </div>
     <div class="row">
         <div class="shadow col-5 dashboard-block">
             <h3>Overview</h3>
@@ -37,6 +49,30 @@
         <div class="shadow col-5 dashboard-block">
             <h3>News Event</h3>
         </div>
-    </div>{% endblock %}
+    </div>
+
+    <div class="modal fade" id="dateModal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="myModalLabel">Select Time</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="datepicker" id="currDatePicker"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-info" data-dismiss="modal" id="dateConfirmBtn">Confirm</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div>
+{% endblock %}
+{% block scripts %}
+    <script src="/static/js/bootstrap-datepicker.min.js"></script>
+    <script src="/static/main.js"></script>
+{% endblock %}
 
 
