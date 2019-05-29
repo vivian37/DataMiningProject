@@ -2,7 +2,7 @@ import os
 
 from flask import Flask, render_template, jsonify, request
 
-from dataset import get_stock_data_detail, get_stock_data_day, find_most_similar
+from dataset import get_stock_data_detail, get_stock_data_day, find_most_similar, get_name_by_stock_id
 from settings import *
 
 app = Flask(__name__)
@@ -64,6 +64,11 @@ def _stock_list():
     for f in os.listdir(DATA_DIR):
         stock_list.append(f.split('.')[0])
     return jsonify(stock_list)
+
+
+@app.route('/data/stock/<stock_id>/name')
+def get_stock_name(stock_id):
+    return jsonify({'name': get_name_by_stock_id(stock_id)})
 
 
 @app.route('/data/stock/detail/<stock_id>')

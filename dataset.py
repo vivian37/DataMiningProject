@@ -1,3 +1,4 @@
+import json
 import os
 
 from proLib import proLib
@@ -5,6 +6,16 @@ from reader import readfile_day_aggr
 from settings import *
 
 plib = proLib()
+
+with open('code.json', encoding='utf8') as f:
+    code_list = json.load(f)
+stock_id_dict = dict()
+for name, sid in code_list:
+    stock_id_dict[sid] = name
+
+
+def get_name_by_stock_id(stock_id):
+    return stock_id_dict.get(stock_id, '')
 
 
 def get_stock_data_detail(stock_id):
@@ -49,5 +60,3 @@ def get_stock_data_day_pct(stock_id):
     data = list(readfile_day_aggr(os.path.join(DATA_DIR, '{}.csv'.format(stock_id))))
     data = [[d[0], float(d[2]), float(d[5]), (float(d[2]) - float(d[5])) / float(d[5])] for d in data]
     return data
-
-

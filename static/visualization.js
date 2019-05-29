@@ -1,5 +1,6 @@
 let currData = [];
 let currStockId = 'Stock';
+let currStockName = 'Stock';
 let myChart;
 let upColor = '#ec0000';
 let upBorderColor = '#8A0000';
@@ -24,7 +25,14 @@ $(document).ready(function () {
                 success: function (d) {
                     currData = d;
                     currStockId = stock_id;
-                    draw();
+                    $.ajax({
+                        url: '/data/stock/' + currStockId + '/name',
+                        success: function (d) {
+                            currStockName = d.name;
+                            draw();
+                        }
+                    });
+
                 }
             })
         } else {
@@ -41,7 +49,7 @@ function draw() {
             source: currData
         },
         title: {
-            text: currStockId
+            text: currStockName + ' (' + currStockId + ')'
         },
         tooltip: {
             trigger: 'axis',
