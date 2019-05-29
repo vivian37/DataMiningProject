@@ -14,7 +14,7 @@
                 <tbody>
                 <tr>
                     <th scope="row">Dataset Size</th>
-                    <td>0</td>
+                    <td>{{ database_size }} </td>
 
                 </tr>
                 <tr>
@@ -38,4 +38,5 @@
         </div>
     </div>{% endblock %}
 
-{% block scripts %}<script src="static/visualization.js"></script>{% endblock %}
+{% block scripts %}
+    <script src="static/visualization.js"></script>{% endblock %}
