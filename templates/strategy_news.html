@@ -1,4 +1,14 @@
 {% extends "layout.html" %}
-{% block title %}Template{% endblock %}
-{% block content %}{% endblock %}
-{% block scripts %}{% endblock %}
+{% block title %}News Based Strategy{% endblock %}
+{% block css %}
+    <link rel="stylesheet" href="/static/css/bootstrap-table.min.css">
+{% endblock %}
+{% block content %}
+    <table class="table table-striped" id="newsTable" data-sort-name="stock">
+
+    </table>
+{% endblock %}
+{% block scripts %}
+    <script src="/static/js/bootstrap-table.min.js"></script>
+    <script src="/static/news.js"></script>
+{% endblock %}

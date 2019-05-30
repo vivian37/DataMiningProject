@@ -1,3 +1,4 @@
+import json
 import os
 
 from flask import Flask, render_template, jsonify, request
@@ -12,7 +13,8 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    return render_template('index.html', database_size=len(os.listdir(DATA_DIR)))
+    return render_template('index.html', database_size=len(os.listdir(DATA_DIR)),
+                           signal_num=len(get_all_frequent_items()))
 
 
 @app.route('/visualization')
@@ -52,7 +54,7 @@ def news_strategy():
 
 @app.route('/strategy/prediction')
 def prediction_strategy():
-    return
+    return render_template('strategy_prediction.html')
 
 
 @app.route('/data/count')
@@ -93,7 +95,7 @@ def get_frequent_items():
     return jsonify(get_all_frequent_items())
 
 
-@app.route('/data/rules',methods=['POST'])
+@app.route('/data/rules', methods=['POST'])
 def get_item_set_rules():
     data = request.json
 
@@ -108,6 +110,18 @@ def get_most_similar(stock_id):
     #     [['SZ001979', 0.6666666666666666, 2, 3], ['SZ002602', 0.6, 9, 15], ['SZ399809', 0.5981308411214953, 64, 107],
     #      ['SZ399686', 0.5975609756097561, 49, 82], ['SH110031', 0.5909090909090909, 39, 66]])
     return jsonify(find_most_similar(stock_id, limit))
+
+
+@app.route('/analysis/news')
+def get_news_trading_suggestions():
+    with open('news.json', encoding='utf8') as f:
+        data = json.load(f)
+    return jsonify(data)
+
+
+@app.route('/analysis/predict/stock_id')
+def get_predicts(stock_id):
+    return
 
 
 if __name__ == '__main__':
