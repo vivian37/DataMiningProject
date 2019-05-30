@@ -1,4 +1,35 @@
 {% extends "layout.html" %}
-{% block title %}Template{% endblock %}
-{% block content %}{% endblock %}
-{% block scripts %}{% endblock %}
+{% block title %}Frequent Itemsets{% endblock %}
+{% block content %}
+
+    <table class="table">
+        <tr>
+            <th>Interest</th>
+            <td id="interest"></td>
+        </tr>
+        <tr>
+            <th>Confidence</th>
+            <td id="confidence"></td>
+        </tr>
+    </table>
+    <div style="max-height: 600px;overflow-y: scroll;">
+        <table class="table table-striped" id="freqItemTable">
+            <thead>
+            <tr>
+                <th>Index</th>
+                <th>Date</th>
+                <th>Direction</th>
+                <th style="width: 170px;"></th>
+                <th style="width: 170px;"></th>
+            </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+    </div>
+
+{% endblock %}
+{% block scripts %}
+    <script src="/static/freqitem.js"></script>
+{% endblock %}

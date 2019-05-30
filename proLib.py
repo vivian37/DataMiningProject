@@ -119,13 +119,13 @@ class proLib():
 
     def _get_freq_item_stock_set(self):
         rule_dic = []
-        with open("freq_item_stock_set","r") as f:
+        with open("freq_item_stock_set", "r") as f:
 
             line = f.readline()
             f.seek(f.tell())
             while (line):
                 s = set()
-                content =line.split(":")[1][1:-1].split(",")
+                content = line.split(":")[1][1:-1].split(",")
                 for i in content:
                     s.add(i[2:-3])
                 rule_dic.append(s)
@@ -133,8 +133,7 @@ class proLib():
                 f.seek(f.tell())
         return rule_dic
 
-
-    def get_rule(self,reson_lit,result_lit):
+    def get_rule(self, reson_lit, result_lit):
         rule_dic = self._get_freq_item_stock_set()
         set1 = rule_dic[reson_lit[0]]
         for i in reson_lit[1:]:
@@ -149,17 +148,11 @@ class proLib():
         for i in result_lit:
             set2 = set2 & rule_dic[i]
         print("conf:", fenzi, "/", fenmu)
-        print("interest:",set2.__len__(),"/",1355)
-
-
-
-
-
-
+        print("interest:", set2.__len__(), "/", 1355)
+        return float(fenzi) / fenmu, float(len(set2)) / 1355
 
 
 if __name__ == '__main__':
-
     # with open("date_num_map","r")as f:
     #     line = f.readline()
     #     f.seek(f.tell())
@@ -186,7 +179,7 @@ if __name__ == '__main__':
     #     for i in d1:
     #         f.write(l[num]+":"+d1[i])
     #         num += 1
-    import time
+    pass
 
     # b = time.time()
     # lib = proLib()

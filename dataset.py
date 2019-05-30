@@ -60,3 +60,24 @@ def get_stock_data_day_pct(stock_id):
     data = list(readfile_day_aggr(os.path.join(DATA_DIR, '{}.csv'.format(stock_id))))
     data = [[d[0], float(d[2]), float(d[5]), (float(d[2]) - float(d[5])) / float(d[5])] for d in data]
     return data
+
+
+def get_all_frequent_items():
+    ret = list()
+    i = 1
+    with open('frequent_item') as f:
+        for line in f:
+            date, status = line.split(': ')
+            status = int(status)
+            if status == 1:
+                status = 'Up'
+            elif status == -1:
+                status = 'Down'
+            else:
+                status = '-'
+            ret.append([date, status, i])
+            i += 1
+    return ret
+
+def get_rules(reasons,results):
+    return plib.get_rule(reasons,results)

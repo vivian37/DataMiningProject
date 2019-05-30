@@ -239,3 +239,11 @@ div.dashboard-block {
     z-index: -1;
 }
 
+#newsTableContainer {
+    max-height: 400px;
+    overflow-y: scroll;
+}
+
+.dashboard-block h3 {
+    margin-top: 10px;
+}
