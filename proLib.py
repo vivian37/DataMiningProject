@@ -117,16 +117,85 @@ class proLib():
         ret.sort(key=lambda d: d[1], reverse=True)
         return ret[:limit]
 
+    def _get_freq_item_stock_set(self):
+        rule_dic = []
+        with open("freq_item_stock_set","r") as f:
+
+            line = f.readline()
+            f.seek(f.tell())
+            while (line):
+                s = set()
+                content =line.split(":")[1][1:-1].split(",")
+                for i in content:
+                    s.add(i[2:-3])
+                rule_dic.append(s)
+                line = f.readline()
+                f.seek(f.tell())
+        return rule_dic
+
+
+    def get_rule(self,reson_lit,result_lit):
+        rule_dic = self._get_freq_item_stock_set()
+        set1 = rule_dic[reson_lit[0]]
+        for i in reson_lit[1:]:
+            set1 = set1 & rule_dic[i]
+        fenmu = set1.__len__()
+        print(fenmu)
+        for i in result_lit:
+            set1 = set1 & rule_dic[i]
+        fenzi = set1.__len__()
+
+        set2 = rule_dic[result_lit[0]]
+        for i in result_lit:
+            set2 = set2 & rule_dic[i]
+        print("conf:", fenzi, "/", fenmu)
+        print("interest:",set2.__len__(),"/",1355)
+
+
+
+
+
+
+
 
 if __name__ == '__main__':
+
+    # with open("date_num_map","r")as f:
+    #     line = f.readline()
+    #     f.seek(f.tell())
+    #     d = dict()
+    #     while(line):
+    #         index = line.split(":")[0]
+    #         d[index] = line.split(":")[1]
+    #         line = f.readline()
+    #         f.seek(f.tell())
+    # with open("frequent_item","r")as f:
+    #     line = f.readline()
+    #     f.seek(f.tell())
+    #     d1 = dict()
+    #     while(line):
+    #         index = line.split(",")[0]
+    #         d1[index] = line.split(",")[1]
+    #         line = f.readline()
+    #         f.seek(f.tell())
+    # l = []
+    # for i in d1:
+    #     l.append(d[i][:-1])
+    # with open("freq_item_stock_set","w")as f:
+    #     num = 0
+    #     for i in d1:
+    #         f.write(l[num]+":"+d1[i])
+    #         num += 1
     import time
 
-    b = time.time()
-    lib = proLib()
+    # b = time.time()
+    # lib = proLib()
+    # lib.get_rule([1],[2])
+    # print(time.time() - b)
     # df1 = lib.handle_file("D:\data\Stk_1F_2015\SH000001.csv")
     # lib.findSmilar(["SH000001.csv"],df1,1,5)
-    lib.get_most_similar("D:\Stk_1F_2016\Stk_1F_2016\Stk_1F_2016\SH000001.csv", limit=5)
-    print(time.time() - b)
+    # lib.get_most_similar("D:\Stk_1F_2016\Stk_1F_2016\Stk_1F_2016\SH000001.csv", limit=5)
+
     # func_name = lib.findSmilar
     # #参数的长度等于线程的个数，建议不超过五个
     # arg = [("D:\pycharm\datamining\dataminingPro\CharacteristicData\SH000001.csv","D:\data\Stk_1F_2015\SH000001.csv",1),
